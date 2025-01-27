@@ -1,0 +1,63 @@
+Day 04
+
+
+
+import Printing from './List_print';
+
+export default function Ace(){
+ const arr = [1,2,3,4,5,6,7,8,9,10];
+return(
+
+    <ul>{
+        arr.map((d,i)=> (<li key={i}><Printing value={d}/></li>))
+    }
+    </ul>
+)
+
+}
+
+
+
+import Printing from './List_print';
+
+export default function Ace(){
+ const arr = [1,2,3,4,5,6,7,8,9,10];
+return(
+
+    <ul>{
+        arr.map((d,i)=> (<li key={i}><Printing value={d}/></li>))
+    }
+    </ul>
+)
+
+}
+
+
+
+
+
+import React, { useState } from 'react';
+import Display from './display';
+import States from './States'
+import Ben10 from './ben10'
+
+function Datas() {
+    const [name, setName] = useState(''); 
+
+    return (
+        <>
+        <center>
+            
+            <Display sendName={setName} /> 
+            <h1>🔥🔥{name}🔥🔥</h1>
+            <States />
+           
+            
+            </center>
+        </>
+    );
+}
+
+export default Datas;
+
+

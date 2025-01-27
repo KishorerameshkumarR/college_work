@@ -1,0 +1,130 @@
+Day 06
+
+
+
+
+export default function Printing({value}){
+    
+    
+    return(
+<>
+<h1>{value}</h1>
+</>
+
+    )
+}
+
+
+
+import { useNavigate } from 'react-router-dom';
+import Contact from './Contact'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+
+export default function Login(){
+
+const navigate = useNavigate();
+
+    return(
+  <>
+  
+  
+
+  <h2>Login Page</h2>
+  <button onClick={() => navigate('/dashboard')}>Go to dashboard</button>
+  </>
+
+    )
+}
+
+
+
+
+
+
+import {useState,createContext } from "react";
+
+import {useDispatch } from "react-redux";
+import {setUsers } from "./slices/userSlice"
+
+
+export const userContext = createContext();
+ 
+export default function Signup(){
+
+   
+    const dispatch = useDispatch();
+
+    function formSubmit(data){
+        data.preventDefault();
+    }
+    const [val,setval] = useState({
+            name:"",
+            roll:"",
+            city:""
+    });
+
+    const addUser =(data)=>{
+       data.preventDefault()
+       dispatch(setUsers(val))
+    }
+
+
+function updateData(data){
+    var variable = data.target.name;
+    var value = data.target.value;
+    console.log("The Vari: ",variable," the value is ",value)
+
+    setval((data)=>{return{...data,[variable]:value}})
+}
+
+    return(
+        <>
+        <userContext.Provider value={{val,setval}}>
+        <center>
+        <form onSubmit={addUser}>
+        Name: <input type="text" name='name' onChange={updateData}></input><br/>
+        Roll: <input type="text" name='roll'  onChange={updateData}></input><br/>
+        City: <input type="text" name='city'   onChange={updateData}></input><br/>
+
+        <input type="submit" value="signup"></input>
+        </form>
+
+        </center>
+        </userContext.Provider>
+        </>
+    )
+}
+
+
+
+
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Invoices, InvoiceDetails, Expenses } from "./routes";
+
+function Task3() {
+  return (
+    <Router>
+      <center>
+      <div style={{ padding: "20px" }}>
+        <h1>Book Keeper</h1>
+        <nav>
+          <Link to="/invoices" style={{ marginRight: "10px" }}>Invoices </Link>
+         
+          <Link to="/expenses">Expenses</Link>
+          
+        </nav>
+       
+
+        <Routes>
+          <Route path="/invoices" element={<Invoices />} />
+          <Route path="/invoices/:name" element={<InvoiceDetails />} />
+          <Route path="/expenses" element={<Expenses />} />
+        </Routes>
+      </div>
+      </center>
+    </Router>
+  );
+}
+
+export default Task3;

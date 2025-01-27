@@ -1,0 +1,50 @@
+Day 11
+
+//const mongodb = require('mongodb');
+//const mongoClient = mongodb.MongoClient;
+
+{/* import {MongoClient} from 'mongodb'; */}
+
+const url = 'mongodb://localhost:27017/t1';
+//let database;
+//const objectId = mongodb.ObjectId;
+
+const mongose = require('mongoose');
+
+
+async function getDatabase(){
+    //const client = await mongoClient.connect(url);
+
+    /*database = client.db('t1');
+    if(database){
+        console.log('Connected to database');
+    }
+    else{
+        console.error('Database connection failed');
+    }*/
+
+        mongose.connect(url)
+        .then(()=>{
+            console.log("db connected")
+        })
+        .catch(()=>{
+            console.log("db connection failed")
+        })
+
+    
+
+}
+
+module.exports = {getDatabase};
+
+
+
+const mongose = require('mongoose');
+const  empSchema = new mongose.Schema({
+    empid: Number,
+    empname: String
+})
+
+const empMdle = mongose.model('empmdle',empSchema);
+module.exports = empMdle;
+

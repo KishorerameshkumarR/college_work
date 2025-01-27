@@ -1,0 +1,125 @@
+Day 09
+
+
+Slices
+
+
+
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {
+    eusers: []
+};
+
+export const userSlice = createSlice({
+    name: 'mySlice',
+    initialState,  
+    reducers: {
+        setUsers: (state, action) => {
+            state.eusers = [...state.eusers, action.payload];
+        }
+    }
+});
+
+export const { setUsers } = userSlice.actions;
+export default userSlice.reducer;
+
+
+import React from "react";
+
+function Expenses() {
+  return (
+    <div>
+      <h2>im from Expenses</h2>
+    </div>
+  );
+}
+
+export default Expenses;
+
+
+
+import React from "react";
+import { Link } from "react-router-dom";
+
+function Home() {
+  return (
+    <div>
+      <h1>Book Keeper</h1>
+      <nav>
+        <Link to="/invoices" style={{ margin: "0 10px" }}>
+          Invoices
+        </Link>
+        |
+        <Link to="/expenses" style={{ margin: "0 10px" }}>
+          Expenses
+        </Link>
+      </nav>
+    </div>
+  );
+}
+
+export default Home;
+
+
+
+
+
+import React, { useState } from "react";
+import  luffy from "D:/React_Projects/eshwar/src/luffy.jpg";
+import  zoro from "D:/React_Projects/eshwar/src/zoro.jpg";
+import sanji from "D:/React_Projects/eshwar/src/sanji.jpg";
+import  brook from "D:/React_Projects/eshwar/src/brook.jpg";
+function Invoices() {
+  const [selectedName, setSelectedName] = useState(""); 
+  const [im,setim] = useState(null);
+
+  const handleClick = (name,imge) => {
+    setSelectedName(name); 
+    setim(imge)
+  };
+
+  return (
+    <div>
+      <h2>I'm from Invoices</h2>
+      <nav>
+        <a
+          href="#"
+          onClick={() => handleClick("Luffy",luffy)}
+          style={{ margin: "0 10px" }}
+        >
+          Luffy
+        </a>
+        |
+        <a
+          href="#"
+          onClick={() => handleClick("Zoro",zoro)}
+          style={{ margin: "0 10px" }}
+        >
+          Zoro
+        </a>
+        |
+        <a
+          href="#"
+          onClick={() => handleClick("Sanji",sanji)}
+          style={{ margin: "0 10px" }}
+        >
+          Sanji
+        </a>
+        |
+        <a
+          href="#"
+          onClick={() => handleClick("Brook",brook)}
+          style={{ margin: "0 10px" }}
+        >
+          Brook
+        </a>
+      </nav>
+      <h1>Orewa {selectedName} !!</h1> 
+      <img src = {im} alt={selectedName} style={{ width: "200px", marginTop: "20px" }}></img>
+    </div>
+  );
+}
+
+export default Invoices;
+

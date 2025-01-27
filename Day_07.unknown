@@ -1,0 +1,121 @@
+Day 07
+
+
+import car from './car.jpg';
+import car2 from './car2.jpg';
+const {useState,useEffect} = require('react');
+
+
+export default function Test(){
+    var [vari,setvari] = useState(0);
+    var [aa,setaa] = useState(0)
+    useEffect(()=>{
+        console.log(`Number increase aaguthu...${vari}`)
+        setTimeout(()=>{
+            if(vari >= 132){
+                console.log('Number 10 Reached');
+                vari = 0;
+            }
+        })
+    },[vari])
+    return(
+        <>
+        <br></br>
+        
+           <img src = {car} alt = "car" style={{position:'relative',width:'200px',height:'200px',left:`${vari*10}px`,transition: 'left 0.5s ease-in-out'}}></img>
+           
+           <center>
+        {/*<button onClick={() => setvari(
+            for(let i=0;i<140;i++){
+                aa = aa+10;
+            }
+        )}>Front</button>*/}
+        <button onClick={() => setvari(vari + 1)}>Front</button>
+        <button onClick={() => setvari(vari - 1)}>Back</button>
+        <h1>{vari}</h1>
+        <h2>Count</h2>
+        </center>
+        </>
+    );
+}
+
+
+
+
+
+import React, { useState } from "react";
+
+export default function Form10(){
+    const [input,setInput] = useState(
+        {
+            name:'',
+            roll:'',
+            city:'',
+            degree:''
+        }
+        );
+
+function formSubmit(formdata){
+    formdata.preventDefault();
+    console.log("success..")
+}
+
+
+    return(
+       <>
+       <center>
+       <form onSubmit={formSubmit}>
+Name: <input type="text" onChange={(data)=>{setInput({...input,name:data.target.value})}}></input><br/>
+Roll: <input type="text" onChange={(data)=>{setInput({...input,roll:data.target.value})}}></input><br/>
+City: <input type="text" onChange={(data)=>{setInput({...input,city:data.target.value})}}></input><br/>
+Degree : <input type="text" onChange={(data)=>{setInput((preData)=>{return{...preData,degree:data.target.value}})}}></input><br></br>
+        <input type="submit" value="signup"></input>
+        </form>
+        </center>
+       </>
+
+    )
+}
+
+
+
+
+import {useState } from "react";
+
+
+export default function Form20(){
+
+
+    function formSubmit(data){
+        data.preventDefault();
+    }
+const [input,setInput] = useState({
+    name:"",
+    roll:"",
+    city:""
+});
+
+
+function updateData(data){
+    var variable = data.target.name;
+    var value = data.target.value;
+    console.log("The Vari: ",variable," the value is ",value)
+
+    setInput((data)=>{return{...data,[variable]:value}})
+}
+
+    return(
+        <>
+        <center>
+        <form onSubmit={formSubmit}>
+        Name: <input type="text" name='name' onChange={updateData}></input><br/>
+Roll: <input type="text" name='roll'  onChange={updateData}></input><br/>
+City: <input type="text" name='city'   onChange={updateData}></input><br/>
+
+        <input type="submit" value="signup"></input>
+        </form>
+
+        </center>
+        </>
+    )
+}
